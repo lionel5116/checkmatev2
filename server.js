@@ -47,10 +47,10 @@ app.use('/api/receipt', require('./routes/api/receipt'));
 //Server static assets in production
 if(process.env.NODE_ENV === 'production')
 {
-    //Set static folder (our public folder)
+    //Set static folder (our public folder) - dist = VUE JS/ build = react
     app.use(express.static('client/dist'));
     app.get('*',(req,res) => {
-        res.sendFile(path.resolve(__dirname,'client','dist','index.html')); 
+        res.sendFile(path.resolve(__dirname,'client','build','index.html')); 
     })
 
 }
