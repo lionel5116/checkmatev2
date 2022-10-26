@@ -16,6 +16,7 @@ const Login = ({ setLoginData }) => {
 
     e.preventDefault();
     let endpoint = process.env.REACT_APP_SERVICE_URL + '/auth'
+    
  
    const config = {
     headers: {
