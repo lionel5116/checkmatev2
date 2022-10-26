@@ -3,14 +3,13 @@ import { connect } from 'react-redux';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Card from 'react-bootstrap/Card';
-import { Link, Navigate } from 'react-router-dom';
-import axios from "axios";
+
 
 import { useHistory } from "react-router-dom";
 
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
-import InputGroup from 'react-bootstrap/InputGroup';
+
 
 //react bootstrap table next
 import BootstrapTable from 'react-bootstrap-table-next';
@@ -33,7 +32,7 @@ const SearchMedicalGroup = ({ deleteMedicalGroupRecord,searchMedicalGroupRecord 
       const {
         Name,
         Email,
-        SearchType
+
       } = formData;
 
       const onChange = e => setFormData({...formData, [e.target.name]: e.target.value});
