@@ -37,21 +37,19 @@ const onSubmit = async e => {
     setAlert('Please enter a password','danger');
   }
   else{
-    register(formData.name,formData.email,formData.password);
+    register(formData.name,
+            formData.email,
+            formData.password);
+            clearScreen()
+      setAlert('User registered','primary');
   }
 }
 
 
 const clearScreen = ()  =>{
-
-    //setUserName('');
-    //setPassword('');
-    //setEmail('');
-    formData = {
-      userName: "",
-      email,
-      _password: ""
-    }
+  setFormData({name: "",
+              email: "",
+              password: ""})
 }
 
 

@@ -13,15 +13,14 @@ import setAuthToken from '../components/utils/setAuthToken';
 
 //Load User
 export const loadUser = () => async dispatch => {
-
+    
    if (localStorage.getItem('token') !== null) {
+       var myToken = JSON.parse(window.localStorage.getItem('token'));
        console.log(`Token exists`);
-       setAuthToken(localStorage.token)
-       console.log(localStorage.token);
+       setAuthToken(myToken.token)
    } else {
        console.log(`Token does not exist`);
    }
-
 
    let serviceUrl = "";
    serviceUrl = process.env.REACT_APP_SERVICE_URL + '/auth'
@@ -29,7 +28,7 @@ export const loadUser = () => async dispatch => {
 
    try {
     const res = await axios.get(serviceUrl);
-    
+    setAlert('User registered','primary');
     dispatch( {
         type: USER_LOADED,
         payload: res.data
@@ -43,7 +42,7 @@ export const loadUser = () => async dispatch => {
 
 
 //Register User
-export const register = ({name,email,password}) => async dispatch => {
+export const register = (name,email,password) => async dispatch => {
    const config = {
        headers: {
            'Content-Type':'application/json'
@@ -51,17 +50,28 @@ export const register = ({name,email,password}) => async dispatch => {
 
    const body = JSON.stringify({name,email,password});
    console.log(body);
+   
+   //var myToken = JSON.parse(window.localStorage.getItem('token'));
+   //console.log(myToken.token)
+
 
    let serviceUrl = "";
+   //http://localhost:5500/api/users
    serviceUrl = process.env.REACT_APP_SERVICE_URL + '/users'
 
 
    try {
        const res = await axios.post(serviceUrl,body,config);
+       localStorage.setItem('token',JSON.stringify(res.data))
+
        dispatch({
          type: REGISTER_SUCCESS,
          payload:res.data
        });
+
+     
+      // console.log(localStorage.getItem('token'))
+
 
        dispatch(loadUser());
 

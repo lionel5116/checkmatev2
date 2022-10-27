@@ -28,7 +28,7 @@ export default function authReducer (state = initialState,action) {
            user:payload
        }  
      case REGISTER_SUCCESS:
-         localStorage.setItem('token',payload.token)
+         //localStorage.setItem('token',payload.token)
          return {
              ...state,
              ...payload,
