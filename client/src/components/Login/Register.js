@@ -6,67 +6,52 @@ import Card from 'react-bootstrap/Card';
 import {Link} from 'react-router-dom';
 import setAuthToken from '../utils/setAuthToken';
 import axios from "axios";
+import {setAlert} from '../../actions/alert'
+import {register} from '../../actions/auth';
 
-const Register = () => {
-  const [userName, setUserName] = useState('');
-  const [email, setEmail] = useState('');
-  const [_password, setPassword] = useState('');
+const Register = ({setAlert,register,isAuthenticated}) => {
+  
 
-    const registerUser = async (e) => {
-        e.preventDefault();
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    password: ""
+  });
 
-        let endpoint = process.env.REACT_APP_SERVICE_URL + '/users'
-        console.log(endpoint)
-
-        const config = {
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        };
-
-        const body = {
-            name: userName,
-            email: email,
-            password: _password
-        };
-
-        console.log(body)
+  const {
+    name,
+    email,
+    password
+  } = formData;
 
 
-        try {
-            const res = await axios.post(endpoint, body, config);
-            if (res.status === 200) {
-               
+const onChange = e => setFormData({ ...formData, [e.target.name]: e.target.value });
 
-                window.alert("User Registered");
-                clearScreen();
+const onSubmit = async e => {
+  e.preventDefault();
+  
+    console.log(formData);
+    console.log(formData.password.length);
 
-
-                loadUser();
-            }
-
-        } catch (err) {
-          
-            window.alert("Register  Failed or user may already exist with that email address.." + err.message)
-
-        }
-
-    }
-
-const loadUser = async () => {
-    if (localStorage.getItem('token') !== null) {
-        setAuthToken(localStorage.token)
-    } else {
-        console.log(`Token does not exist`);
-        //this.$store.commit('setIsValidFalse');
-    }
+  if(formData.password.length < 0){
+    setAlert('Please enter a password','danger');
+  }
+  else{
+    register(formData.name,formData.email,formData.password);
+  }
 }
 
 
 const clearScreen = ()  =>{
-    setUserName('');
-    setPassword('');
-    setEmail('');
+
+    //setUserName('');
+    //setPassword('');
+    //setEmail('');
+    formData = {
+      userName: "",
+      email,
+      _password: ""
+    }
 }
 
 
@@ -83,8 +68,9 @@ const clearScreen = ()  =>{
           <Card.Title>Enter Credentials</Card.Title>
           <Form
             onSubmit={(e) => {
-                registerUser(e)
+                //registerUser(e)
               e.preventDefault();
+              onSubmit(e)
               //setLoginData(userName, _password);
               //setUserName('');
               //setPassword('');
@@ -92,31 +78,37 @@ const clearScreen = ()  =>{
             }}
           >
 
-          <Form.Group className="mb-3" controlId="formBasicUserName">
+          <Form.Group className="mb-3" >
               <Form.Label>User Name</Form.Label>
               <Form.Control type="input"
                 placeholder="Enter User Name"
-                value={userName}
-                onChange={(e) => setUserName(e.target.value)}
+                id="name"
+                name="name"
+                value={name}
+                onChange={(e) => onChange(e)}
               />
             </Form.Group>
 
-            <Form.Group className="mb-3" controlId="formBasicEmail">
+            <Form.Group className="mb-3" >
               <Form.Label>Email address</Form.Label>
               <Form.Control type="input"
                 placeholder="Enter email"
+                id="email"
+                name="email"
                 value={email}
-                onChange={(e) => setEmail(e.target.value)}
+                onChange={(e) => onChange(e)}
               />
             </Form.Group>
 
-            <Form.Group className="mb-3" controlId="formBasicPassword">
+            <Form.Group className="mb-3" >
               <Form.Label>Password</Form.Label>
               <Form.Control
                 type="password"
                 placeholder="Password"
-                value={_password}
-                onChange={(e) => setPassword(e.target.value)} />
+                id="password"
+                name="password"
+                value={password}
+                onChange={(e) => onChange(e)} />
             </Form.Group>
 
             <Button variant="primary" type="submit" style={myStyles.buttonCustomStyle}>
@@ -150,8 +142,8 @@ const myStyles = {
 
 };
 const mapStateToProps = state => ({
-
+  //isAuthenticated: state.auth.isAuthenticated
 })
 
 
-export default connect(mapStateToProps)(Register)
+export default connect(mapStateToProps, {setAlert,register})(Register)

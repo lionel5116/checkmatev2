@@ -12,6 +12,8 @@ const Login = ({ setLoginData }) => {
   const [userName, setUserName] = useState('');
   const [_password, setPassword] = useState('');
 
+  
+  //const login (called from submit)
   const login = async (e) => {
 
     e.preventDefault();
@@ -31,11 +33,16 @@ const Login = ({ setLoginData }) => {
 
     
     try {
+         //@route POST api/auth
+         //http://localhost:5000/api/auth
+         //verifies credentials and fetches new token
         const res = await axios.post(endpoint,body,config);
         window.alert("User Successfully Logged in!!!");
       
         console.log(res.data);
 
+        //set's token to local storage/ called below
+        //--calls setAuthToken
         loadUser();
 
     } catch (err) {
@@ -43,7 +50,7 @@ const Login = ({ setLoginData }) => {
         window.alert("Login Failed.." + err.message)
     }
     
-}
+  }
 
 const loadUser = async () => {
   if (localStorage.getItem('token') !== null) {
