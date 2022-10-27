@@ -51,13 +51,14 @@ class NavbarMain extends React.Component {
                 <NavDropdown.Item href="#/SearchReceipt">Search Receipts </NavDropdown.Item>
               </NavDropdown>
 
-              {/*
+             
               <NavDropdown title="Client Records" id="basic-nav-dropdown">
                 <NavDropdown.Item href="#/Search">Search</NavDropdown.Item>
                 <NavDropdown.Item href="#/Client">Add</NavDropdown.Item>
               </NavDropdown>
-             */}
+           
 
+            {/*
               <NavDropdown title="Reports" id="basic-nav-dropdown">
                 <NavDropdown.Item href="#/"></NavDropdown.Item>
               </NavDropdown>
@@ -65,7 +66,7 @@ class NavbarMain extends React.Component {
               <Nav.Link href="#">Administration</Nav.Link>
               <Nav.Link href="#/test">REDUX AUTH TEST</Nav.Link>
 
-
+            */}
             </Nav>
 
           </Navbar.Collapse>
