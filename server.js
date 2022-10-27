@@ -45,6 +45,10 @@ app.use('/api/receipt', require('./routes/api/receipt'));
 
 
 //Server static assets in production
+//ALSO DON'T FORGET TO CHANGE OUT THE .ENV FILE TO HEROJU'S PUBLIC SERVICE URL
+//BELOW IS FOR WHEN YOU ARE DEPLOYING TO HEROKU TO USE A SEPERATE ENDPOINT FOR THE SERVICE
+//EACT_APP_SERVICE_URL = 'https://pure-gorge-49930.herokuapp.com/api'
+
 if(process.env.NODE_ENV === 'production')
 {
     //Set static folder (our public folder) - dist = VUE JS/ build = react
