@@ -194,6 +194,7 @@ export const searchPharmaRecord =
 
             let serviceUrl = "";
             serviceUrl = process.env.REACT_APP_SERVICE_URL + '/pharma/searchPharmaRecord'
+            console.log(serviceUrl)
 
             try {
                 const config = {
