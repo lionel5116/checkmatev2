@@ -24,7 +24,7 @@ export const Pharma = ({ createPharmaRecord, deletePharmaRecord, updatePharmaRec
     const _queryID = location.search;
     if (_queryID !== '') {
       var id = _queryID.substring(_queryID.indexOf('=') + 1);
-      //console.log("Id from search " + id);
+ 
       setID(id)
       fetchSingeRecordByRecordID(id);
     }
@@ -96,8 +96,7 @@ export const Pharma = ({ createPharmaRecord, deletePharmaRecord, updatePharmaRec
 
     setID(id)
    
-  //this is done this way below because of a wierd keying in and disappearing field data
-  //when you fetch for a record to update ** will research later
+
 
     var _Name = document.getElementById('Name')
     _Name.value = _SEARCH_DATA.Name;
@@ -158,6 +157,7 @@ export const Pharma = ({ createPharmaRecord, deletePharmaRecord, updatePharmaRec
   }
 
 
+  /*
   const deleteSelectedPharmaRecord = async (e) => {
     e.preventDefault();
 
@@ -169,6 +169,7 @@ export const Pharma = ({ createPharmaRecord, deletePharmaRecord, updatePharmaRec
     deletePharmaRecord(id);
 
   }
+  */
 
   return (
     <div className="container">
@@ -232,7 +233,7 @@ export const Pharma = ({ createPharmaRecord, deletePharmaRecord, updatePharmaRec
           </Form.Group>
 
         </Row>
-
+         <br></br>
         <Row className="mb-6">
           <Form.Group as={Col}>
             <Button variant="primary" type="submit"

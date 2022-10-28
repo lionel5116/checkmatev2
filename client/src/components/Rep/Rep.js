@@ -1,6 +1,6 @@
-import PropTypes from 'prop-types'
+
 import React from 'react'
-import { useState, Fragment } from 'react';
+import { useState} from 'react';
 import { connect } from 'react-redux'
 
 import Button from 'react-bootstrap/Button';
@@ -17,12 +17,12 @@ import { useHistory } from "react-router-dom";
 export const Rep = ({ createRepRecord, deleteRepRecord, updateRepRecord, getRepRecord ,fetchManagerFirstAndLastName}) => {
 
     const location = useLocation();
-    const history = useHistory();
+    
 
     //useEffect Methods ***********
     useEffect(() => {
         const _queryID = location.search;
-        if (_queryID != '') {
+        if (_queryID !== '') {
             var id = _queryID.substring(_queryID.indexOf('=') + 1);
             //console.log("Id from search " + id);
             setID(id)
@@ -38,7 +38,7 @@ export const Rep = ({ createRepRecord, deleteRepRecord, updateRepRecord, getRepR
         //getManagerFirstAndLastName()
     },[])
 
-    const [confirmPassword, setconfirmPassword] = useState('');
+    //const [confirmPassword, setconfirmPassword] = useState('');
     const [id, setID] = useState('');
 
     const [formData, setFormData] = useState({
@@ -169,7 +169,7 @@ export const Rep = ({ createRepRecord, deleteRepRecord, updateRepRecord, getRepR
             formData.Email.length > 0) {
 
            if(formData.ManagerName.length > 0 &&
-            formData.ManagerName != '--Select Manager--')
+            formData.ManagerName !== '--Select Manager--')
             {
               
             }else {
@@ -213,6 +213,7 @@ export const Rep = ({ createRepRecord, deleteRepRecord, updateRepRecord, getRepR
      }
      
 
+     /*
     const deleteSelectedRepRecord = async (e) => {
         e.preventDefault();
 
@@ -224,7 +225,7 @@ export const Rep = ({ createRepRecord, deleteRepRecord, updateRepRecord, getRepR
         deleteRepRecord(id);
 
     }
-
+*/
     return (
         <div className="container">
             <br />
@@ -235,17 +236,6 @@ export const Rep = ({ createRepRecord, deleteRepRecord, updateRepRecord, getRepR
 
               <Row className="mb-3">
                     <Form.Group as={Col}>
-                    {/*
-                    <Form.Label>Manager Name</Form.Label>
-                        <select class="form-select form-select-sm"
-                            aria-label=".form-select-sm example"
-                            style={{ width: 300 }}
-                            name='ManagerName'
-                            id='ManagerName'
-                            value={ManagerName} onChange={e => onChange(e)}
-                            >
-                        </select>
-                       */}
                            <Form.Control as="select" aria-label="Select Manager"
                                     id="ManagerName"
                                     name="ManagerName"
@@ -257,20 +247,6 @@ export const Rep = ({ createRepRecord, deleteRepRecord, updateRepRecord, getRepR
                     </Form.Group>
 
                 </Row>
-                
-                {/*
-                <Row className="mb-3">
-                    <Form.Group as={Col}>
-                        <Form.Label>Manager Name</Form.Label>
-                        <Form.Control
-                            type="input"
-                            id="ManagerName"
-                            name="ManagerName"
-                            value={ManagerName} onChange={e => onChange(e)}
-                        />
-                    </Form.Group>
-                </Row>
-              */}
 
                 <Row className="mb-3">
 
@@ -353,7 +329,7 @@ export const Rep = ({ createRepRecord, deleteRepRecord, updateRepRecord, getRepR
                     </Form.Group>
 
                 </Row>
-
+                <br></br>
                 <Row className="mb-6">
                     <Form.Group as={Col}>
                         <Button variant="primary" type="submit"
@@ -385,7 +361,7 @@ export const Rep = ({ createRepRecord, deleteRepRecord, updateRepRecord, getRepR
 
 }
 
-
+/*
 const myStyles = {
     buttonPadLeft: {
         marginLeft: '2px'
@@ -395,6 +371,7 @@ const myStyles = {
     }
 
 };
+*/
 
 const mapStateToProps = (state) => ({})
 

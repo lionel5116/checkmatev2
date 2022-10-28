@@ -1,6 +1,6 @@
-import PropTypes from 'prop-types'
+
 import React from 'react'
-import { useState, Fragment } from 'react';
+import { useState} from 'react';
 import { connect } from 'react-redux'
 
 import Button from 'react-bootstrap/Button';
@@ -17,12 +17,12 @@ import { useHistory } from "react-router-dom";
 export const Receipt = ({ createReceiptRecord, deleteReceiptRecord, updateReceiptRecord, getReceiptRecord, fetchRepFirstAndLastName }) => {
 
     const location = useLocation();
-    const history = useHistory();
+   
 
     //useEffect Methods ***********
     useEffect(() => {
         const _queryID = location.search;
-        if (_queryID != '') {
+        if (_queryID !== '') {
             var id = _queryID.substring(_queryID.indexOf('=') + 1);
             //console.log("Id from search " + id);
             setID(id)
@@ -35,7 +35,7 @@ export const Receipt = ({ createReceiptRecord, deleteReceiptRecord, updateReceip
         //getRepFirstAndLastName()
     },[])
 
-    const [confirmPassword, setconfirmPassword] = useState('');
+   
     const [id, setID] = useState('');
 
     const [formData, setFormData] = useState({
@@ -188,7 +188,7 @@ export const Receipt = ({ createReceiptRecord, deleteReceiptRecord, updateReceip
 
     }
 
-
+   /*
     const deleteSelectedReceiptRecord = async (e) => {
         e.preventDefault();
 
@@ -200,6 +200,7 @@ export const Receipt = ({ createReceiptRecord, deleteReceiptRecord, updateReceip
         deleteReceiptRecord(id);
 
     }
+*/
 
     return (
         <div className="container">
@@ -316,7 +317,7 @@ export const Receipt = ({ createReceiptRecord, deleteReceiptRecord, updateReceip
                     </Form.Group>
 
                 </Row>
-
+                <br></br>
                 <Row className="mb-6">
                     <Form.Group as={Col}>
                         <Button variant="primary" type="submit"

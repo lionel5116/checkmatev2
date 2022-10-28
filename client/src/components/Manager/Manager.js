@@ -1,6 +1,6 @@
-import PropTypes from 'prop-types'
+
 import React from 'react'
-import { useState, Fragment } from 'react';
+import { useState} from 'react';
 import { connect } from 'react-redux'
 
 import Button from 'react-bootstrap/Button';
@@ -12,17 +12,16 @@ import { createManagerRecord, deleteManagerRecord, updateManagerRecord, getManag
 
 import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
-import { useHistory } from "react-router-dom";
+
 
 export const Manager = ({ createManagerRecord, deleteManagerRecord, updateManagerRecord, getManagerRecord,fetchManagerFirstAndLastName }) => {
 
     const location = useLocation();
-    const history = useHistory();
-
+   
     //useEffect Methods ***********
     useEffect(() => {
         const _queryID = location.search;
-        if (_queryID != '') {
+        if (_queryID !== '') {
             var id = _queryID.substring(_queryID.indexOf('=') + 1);
             //console.log("Id from search " + id);
             setID(id)
@@ -30,9 +29,9 @@ export const Manager = ({ createManagerRecord, deleteManagerRecord, updateManage
         }
     }, [location]);
 
-    const [confirmPassword, setconfirmPassword] = useState('');
+    //const [confirmPassword, setconfirmPassword] = useState('');
     const [id, setID] = useState('');
-    const [managerData, setManagerData] = useState([])
+    //const [managerData, setManagerData] = useState([])
 
     const [formData, setFormData] = useState({
         FirstName: "",
@@ -94,6 +93,7 @@ export const Manager = ({ createManagerRecord, deleteManagerRecord, updateManage
 
     }
 
+    /*
     async function  getManagerFirstAndLastName(e) {
         e.preventDefault();
         let _SEARCH_DATA = [];
@@ -108,7 +108,7 @@ export const Manager = ({ createManagerRecord, deleteManagerRecord, updateManage
         }
 
     }
-
+*/
     async function fetchSingeRecordByRecordID(id) {
         let _SEARCH_DATA = [];
 
@@ -185,6 +185,7 @@ export const Manager = ({ createManagerRecord, deleteManagerRecord, updateManage
     }
 
 
+    /*
     const deleteSelectedManagerRecord = async (e) => {
         e.preventDefault();
 
@@ -196,6 +197,7 @@ export const Manager = ({ createManagerRecord, deleteManagerRecord, updateManage
         deleteManagerRecord(id);
 
     }
+    */
 
     return (
         <div className="container">
@@ -322,7 +324,7 @@ export const Manager = ({ createManagerRecord, deleteManagerRecord, updateManage
                     </Form.Group>
 
                 </Row>
-
+                <br></br>
                 <Row className="mb-6">
                     <Form.Group as={Col}>
                         <Button variant="primary" type="submit"

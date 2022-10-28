@@ -1,6 +1,6 @@
-import PropTypes from 'prop-types'
+
 import React from 'react'
-import { useState, Fragment } from 'react';
+import { useState } from 'react';
 import { connect } from 'react-redux'
 
 import Button from 'react-bootstrap/Button';
@@ -22,7 +22,7 @@ export const MedicalGroup = ({ createMedicalGroupRecord, deleteMedicalGroupRecor
   //useEffect Methods ***********
   useEffect(() => {
     const _queryID = location.search;
-    if (_queryID != '') {
+    if (_queryID !== '') {
       var id = _queryID.substring(_queryID.indexOf('=') + 1);
       //console.log("Id from search " + id);
       setID(id)
@@ -171,6 +171,7 @@ export const MedicalGroup = ({ createMedicalGroupRecord, deleteMedicalGroupRecor
  
   }
 
+  /*
 
   const deleteSelectedMedicalGroupRecord = async (e) => {
     e.preventDefault();
@@ -183,6 +184,7 @@ export const MedicalGroup = ({ createMedicalGroupRecord, deleteMedicalGroupRecor
     deleteMedicalGroupRecord(id);
 
   }
+  */
 
   return (
     <div className="container">
@@ -265,7 +267,7 @@ export const MedicalGroup = ({ createMedicalGroupRecord, deleteMedicalGroupRecor
           </Form.Group>
 
         </Row>
-
+        <br></br>
         <Row className="mb-6">
           <Form.Group as={Col}>
             <Button variant="primary" type="submit"
