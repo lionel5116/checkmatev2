@@ -1,6 +1,6 @@
 
 import React from 'react'
-import { useState} from 'react';
+import { useState } from 'react';
 import { connect } from 'react-redux'
 
 import Button from 'react-bootstrap/Button';
@@ -12,12 +12,13 @@ import { createReceiptRecord, deleteReceiptRecord, updateReceiptRecord, getRecei
 
 import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
-import { useHistory } from "react-router-dom";
+import AuthButton from '../reusable/AuthButton';
+
 
 export const Receipt = ({ createReceiptRecord, deleteReceiptRecord, updateReceiptRecord, getReceiptRecord, fetchRepFirstAndLastName }) => {
 
     const location = useLocation();
-   
+
 
     //useEffect Methods ***********
     useEffect(() => {
@@ -31,11 +32,11 @@ export const Receipt = ({ createReceiptRecord, deleteReceiptRecord, updateReceip
         }
     }, [location]);
 
-    useEffect(()=> {
+    useEffect(() => {
         //getRepFirstAndLastName()
-    },[])
+    }, [])
 
-   
+
     const [id, setID] = useState('');
 
     const [formData, setFormData] = useState({
@@ -100,7 +101,7 @@ export const Receipt = ({ createReceiptRecord, deleteReceiptRecord, updateReceip
         _SEARCH_DATA = await fetchRepFirstAndLastName();
         console.log(_SEARCH_DATA)
 
-        
+
         var _ddReps = document.getElementById('Rep');
         removeOptions(_ddReps)
 
@@ -113,11 +114,11 @@ export const Receipt = ({ createReceiptRecord, deleteReceiptRecord, updateReceip
 
     function removeOptions(selectElement) {
         var i, L = selectElement.options.length - 1;
-        for(i = L; i >= 0; i--) {
-           selectElement.remove(i);
+        for (i = L; i >= 0; i--) {
+            selectElement.remove(i);
         }
-     }
-     
+    }
+
 
     async function fetchSingeRecordByRecordID(id) {
         let _SEARCH_DATA = [];
@@ -188,19 +189,19 @@ export const Receipt = ({ createReceiptRecord, deleteReceiptRecord, updateReceip
 
     }
 
-   /*
-    const deleteSelectedReceiptRecord = async (e) => {
-        e.preventDefault();
-
-        const confirmBox = window.confirm(
-            "Are you sure you want to delete this item?"
-        )
-        if (confirmBox === true) { } else { return; }
-
-        deleteReceiptRecord(id);
-
-    }
-*/
+    /*
+     const deleteSelectedReceiptRecord = async (e) => {
+         e.preventDefault();
+ 
+         const confirmBox = window.confirm(
+             "Are you sure you want to delete this item?"
+         )
+         if (confirmBox === true) { } else { return; }
+ 
+         deleteReceiptRecord(id);
+ 
+     }
+ */
 
     return (
         <div className="container">
@@ -341,7 +342,21 @@ export const Receipt = ({ createReceiptRecord, deleteReceiptRecord, updateReceip
                             disabled={id !== '' ? false : true}>
                             Update Record
                         </Button>
+
+                        <Button variant="success"
+                            type="button"
+                            style={{ marginLeft: '10px' }}
+                            onClick={(e) => clearScreen(e)}
+                            id="btnClearScreen"
+                            disabled={id !== '' ? true : false}
+                        >
+                            Add New
+                        </Button>
                     </Form.Group>
+                </Row>
+                <br></br>
+                <Row className="mb-3">
+                    <AuthButton />
                 </Row>
             </Form>
         </div>

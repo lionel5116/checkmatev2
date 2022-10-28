@@ -12,6 +12,7 @@ import { createManagerRecord, deleteManagerRecord, updateManagerRecord, getManag
 
 import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
+import AuthButton from '../reusable/AuthButton';
 
 
 export const Manager = ({ createManagerRecord, deleteManagerRecord, updateManagerRecord, getManagerRecord,fetchManagerFirstAndLastName }) => {
@@ -325,7 +326,7 @@ export const Manager = ({ createManagerRecord, deleteManagerRecord, updateManage
 
                 </Row>
                 <br></br>
-                <Row className="mb-6">
+                <Row className="mb-3">
                     <Form.Group as={Col}>
                         <Button variant="primary" type="submit"
                         disabled={id !== '' ? true : false}>
@@ -348,17 +349,21 @@ export const Manager = ({ createManagerRecord, deleteManagerRecord, updateManage
                             disabled={id !== '' ? false : true}>
                             Update Record
                         </Button>
-                         {/*
-                        <Button variant="danger"
+                        
+                        <Button variant="success"
                             type="button"
                             style={{ marginLeft: '10px' }}
-                            onClick={(e) => getManagerFirstAndLastName(e)}
-                            id="btnTest"
+                            onClick={(e) => clearScreen(e)}
+                            id="btnClearScreen"
+                            disabled={id !== '' ? true : false}
                             >
-                            Test Out Something
+                            Add New
                         </Button>
-                         */}
+                     
                     </Form.Group>
+                </Row>
+                <Row className="mb-3">
+                <AuthButton />
                 </Row>
             </Form>
         </div>

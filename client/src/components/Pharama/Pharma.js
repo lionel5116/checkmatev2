@@ -1,6 +1,6 @@
 
 import React from 'react'
-import { useState} from 'react';
+import { useState } from 'react';
 import { connect } from 'react-redux'
 
 import Button from 'react-bootstrap/Button';
@@ -8,13 +8,14 @@ import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
 
-import { createPharmaRecord, deletePharmaRecord, updatePharmaRecord,getPharmaRecord } from '../../actions/Pharma';
+import { createPharmaRecord, deletePharmaRecord, updatePharmaRecord, getPharmaRecord } from '../../actions/Pharma';
 
 import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
+import AuthButton from '../reusable/AuthButton';
 
 
-export const Pharma = ({ createPharmaRecord, deletePharmaRecord, updatePharmaRecord,getPharmaRecord }) => {
+export const Pharma = ({ createPharmaRecord, deletePharmaRecord, updatePharmaRecord, getPharmaRecord }) => {
 
   const location = useLocation();
 
@@ -24,7 +25,7 @@ export const Pharma = ({ createPharmaRecord, deletePharmaRecord, updatePharmaRec
     const _queryID = location.search;
     if (_queryID !== '') {
       var id = _queryID.substring(_queryID.indexOf('=') + 1);
- 
+
       setID(id)
       fetchSingeRecordByRecordID(id);
     }
@@ -89,13 +90,13 @@ export const Pharma = ({ createPharmaRecord, deletePharmaRecord, updatePharmaRec
   }
 
 
-  async function fetchSingeRecordByRecordID(id) { 
+  async function fetchSingeRecordByRecordID(id) {
     let _SEARCH_DATA = [];
-    
+
     _SEARCH_DATA = await getPharmaRecord(id);
 
     setID(id)
-   
+
 
 
     var _Name = document.getElementById('Name')
@@ -104,21 +105,21 @@ export const Pharma = ({ createPharmaRecord, deletePharmaRecord, updatePharmaRec
 
     var _Phone = document.getElementById('Phone')
     _Phone.value = _SEARCH_DATA.Phone;
-    formData.Phone= _Phone.value;
+    formData.Phone = _Phone.value;
 
     var _Email = document.getElementById('Email')
     _Email.value = _SEARCH_DATA.Email;
-    formData.Email= _Email.value;
+    formData.Email = _Email.value;
 
     var _password = document.getElementById('Password')
     _password.value = _SEARCH_DATA.Password;
-    formData.Password= _password.value;
+    formData.Password = _password.value;
 
     var _Notes = document.getElementById('Notes')
     _Notes.value = _SEARCH_DATA.Notes;
-    formData.Notes= _Notes.value;
-    
-   }
+    formData.Notes = _Notes.value;
+
+  }
 
 
   const updatepharmaceuticalRecord = e => {
@@ -126,16 +127,16 @@ export const Pharma = ({ createPharmaRecord, deletePharmaRecord, updatePharmaRec
 
     var _confirmPassword = document.getElementById('confirmPassword')
     setconfirmPassword(_confirmPassword.value)
-    
+
     console.log(formData)
-    
+
     if (formData.Name.length > 0 &&
       formData.Phone.length > 0 &&
       formData.Email.length > 0) {
 
 
       console.log('Confirmed Password: ' + confirmPassword)
-      
+
       if (confirmPassword === formData.Password) {
 
       }
@@ -149,11 +150,11 @@ export const Pharma = ({ createPharmaRecord, deletePharmaRecord, updatePharmaRec
       window.alert("Missing required field entries!!!");
       return;
     }
-    
-   
+
+
     updatePharmaRecord(formData, id);
     clearScreen();
- 
+
   }
 
 
@@ -233,11 +234,11 @@ export const Pharma = ({ createPharmaRecord, deletePharmaRecord, updatePharmaRec
           </Form.Group>
 
         </Row>
-         <br></br>
+        <br></br>
         <Row className="mb-6">
           <Form.Group as={Col}>
             <Button variant="primary" type="submit"
-            disabled={id !== '' ? true : false}>
+              disabled={id !== '' ? true : false}>
               Submit
             </Button>
             {/*
@@ -257,7 +258,21 @@ export const Pharma = ({ createPharmaRecord, deletePharmaRecord, updatePharmaRec
               disabled={id !== '' ? false : true}>
               Update Record
             </Button>
+
+            <Button variant="success"
+              type="button"
+              style={{ marginLeft: '10px' }}
+              onClick={(e) => clearScreen(e)}
+              id="btnClearScreen"
+              disabled={id !== '' ? true : false}
+            >
+              Add New
+            </Button>
           </Form.Group>
+        </Row>
+        <br></br>
+        <Row className="mb-3">
+          <AuthButton />
         </Row>
       </Form>
     </div>
@@ -279,4 +294,4 @@ const myStyles = {
 const mapStateToProps = (state) => ({})
 
 
-export default connect(mapStateToProps, { createPharmaRecord, deletePharmaRecord, updatePharmaRecord,getPharmaRecord})(Pharma)
+export default connect(mapStateToProps, { createPharmaRecord, deletePharmaRecord, updatePharmaRecord, getPharmaRecord })(Pharma)

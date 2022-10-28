@@ -5,10 +5,25 @@ import { NavDropdown } from 'react-bootstrap';
 //import {  withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types'
+import Form from 'react-bootstrap/Form';
+import Button from 'react-bootstrap/Button';
+
+import { useHistory } from "react-router-dom";
 
 
 
 const NavbarMain = ({ auth, isAuthenticated }) => {
+
+  const history = useHistory();
+
+  function returnToLogin(e) {
+    e.preventDefault();
+    history.push(
+        {
+            pathname: '/Login'
+        })
+}
+
 
   return (
     <div id="MasterContainer">
@@ -44,15 +59,27 @@ const NavbarMain = ({ auth, isAuthenticated }) => {
                    <NavDropdown.Item href="#/Receipt">Add Receipts </NavDropdown.Item>
                    <NavDropdown.Item href="#/SearchReceipt">Search Receipts </NavDropdown.Item>
                  </NavDropdown>
+
+                  <Form className="d-flex">
+                  <Form.Control
+                    type="search"
+                    placeholder="Search"
+                    className="me-2"
+                    aria-label="Search"
+                  />
+                <Button variant="outline-success"
+                    onClick={(e) => returnToLogin(e)}
+                    >Login/Authenticate</Button>
+                </Form>
    
-   
+                {/*
                  <NavDropdown title="Client Records" id="basic-nav-dropdown">
                    <NavDropdown.Item href="#/Search">Search</NavDropdown.Item>
                    <NavDropdown.Item href="#/Client">Add</NavDropdown.Item>
                  </NavDropdown>
    
    
-                 {/*
+                
                  <NavDropdown title="Reports" id="basic-nav-dropdown">
                    <NavDropdown.Item href="#/"></NavDropdown.Item>
                  </NavDropdown>

@@ -12,12 +12,13 @@ import { createMedicalGroupRecord, deleteMedicalGroupRecord, updateMedicalGroupR
 
 import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
-import { useHistory } from "react-router-dom";
+
+import AuthButton from '../reusable/AuthButton'
 
 export const MedicalGroup = ({ createMedicalGroupRecord, deleteMedicalGroupRecord, updateMedicalGroupRecord,getMedicalGroupRecord }) => {
 
   const location = useLocation();
-  const history = useHistory();
+ 
 
   //useEffect Methods ***********
   useEffect(() => {
@@ -291,8 +292,23 @@ export const MedicalGroup = ({ createMedicalGroupRecord, deleteMedicalGroupRecor
               disabled={id !== '' ? false : true}>
               Update Record
             </Button>
+
+            <Button variant="success"
+              type="button"
+              style={{ marginLeft: '10px' }}
+              onClick={(e) => clearScreen(e)}
+              id="btnClearScreen"
+              disabled={id !== '' ? true : false}
+            >
+              Add New
+            </Button>
           </Form.Group>
         </Row>
+        <br></br>
+        <Row className="mb-3">
+          <AuthButton />
+        </Row>
+
       </Form>
     </div>
   );

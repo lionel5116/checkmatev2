@@ -1,6 +1,6 @@
 
 import React from 'react'
-import { useState} from 'react';
+import { useState } from 'react';
 import { connect } from 'react-redux'
 
 import Button from 'react-bootstrap/Button';
@@ -8,16 +8,17 @@ import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
 
-import { createRepRecord, deleteRepRecord, updateRepRecord, getRepRecord,fetchManagerFirstAndLastName } from '../../actions/Rep';
+import { createRepRecord, deleteRepRecord, updateRepRecord, getRepRecord, fetchManagerFirstAndLastName } from '../../actions/Rep';
 
 import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
-import { useHistory } from "react-router-dom";
 
-export const Rep = ({ createRepRecord, deleteRepRecord, updateRepRecord, getRepRecord ,fetchManagerFirstAndLastName}) => {
+import AuthButton from '../reusable/AuthButton';
+
+export const Rep = ({ createRepRecord, deleteRepRecord, updateRepRecord, getRepRecord, fetchManagerFirstAndLastName }) => {
 
     const location = useLocation();
-    
+
 
     //useEffect Methods ***********
     useEffect(() => {
@@ -29,14 +30,14 @@ export const Rep = ({ createRepRecord, deleteRepRecord, updateRepRecord, getRepR
             getManagerFirstAndLastName()
             fetchSingeRecordByRecordID(id);
         }
-        else{
+        else {
             getManagerFirstAndLastName()  //need to populate the Manager's Dropdown
         }
     }, [location]);
 
     useEffect(() => {
         //getManagerFirstAndLastName()
-    },[])
+    }, [])
 
     //const [confirmPassword, setconfirmPassword] = useState('');
     const [id, setID] = useState('');
@@ -88,12 +89,11 @@ export const Rep = ({ createRepRecord, deleteRepRecord, updateRepRecord, getRepR
             formData.Email.length > 0) {
 
             console.log(formData)
-            
-           if(formData.ManagerName.length > 0 &&
-            formData.ManagerName !== '--Select Manager--')
-            {
-              
-            }else {
+
+            if (formData.ManagerName.length > 0 &&
+                formData.ManagerName !== '--Select Manager--') {
+
+            } else {
                 window.alert("Need a Manager Name selected!");
                 return;
             }
@@ -168,11 +168,10 @@ export const Rep = ({ createRepRecord, deleteRepRecord, updateRepRecord, getRepR
             formData.Territory.length > 0 &&
             formData.Email.length > 0) {
 
-           if(formData.ManagerName.length > 0 &&
-            formData.ManagerName !== '--Select Manager--')
-            {
-              
-            }else {
+            if (formData.ManagerName.length > 0 &&
+                formData.ManagerName !== '--Select Manager--') {
+
+            } else {
                 window.alert("Need a Manager Name selected!");
                 return;
             }
@@ -189,17 +188,17 @@ export const Rep = ({ createRepRecord, deleteRepRecord, updateRepRecord, getRepR
 
     }
 
-    async function  getManagerFirstAndLastName() {
-     
+    async function getManagerFirstAndLastName() {
+
         let _SEARCH_DATA = [];
         _SEARCH_DATA = await fetchManagerFirstAndLastName();
         console.log(_SEARCH_DATA)
- 
-        var _ddMangers = document.getElementById('ManagerName'); 
-        removeOptions( _ddMangers)
+
+        var _ddMangers = document.getElementById('ManagerName');
+        removeOptions(_ddMangers)
 
         _ddMangers.options[_ddMangers.options.length] = new Option('--Select Manager--');
-        for(const key in _SEARCH_DATA) {     
+        for (const key in _SEARCH_DATA) {
             _ddMangers.options[_ddMangers.options.length] = new Option(_SEARCH_DATA[key].FirstName + ' ' + _SEARCH_DATA[key].LastName);
         }
 
@@ -207,24 +206,24 @@ export const Rep = ({ createRepRecord, deleteRepRecord, updateRepRecord, getRepR
 
     function removeOptions(selectElement) {
         var i, L = selectElement.options.length - 1;
-        for(i = L; i >= 0; i--) {
-           selectElement.remove(i);
+        for (i = L; i >= 0; i--) {
+            selectElement.remove(i);
         }
-     }
-     
-
-     /*
-    const deleteSelectedRepRecord = async (e) => {
-        e.preventDefault();
-
-        const confirmBox = window.confirm(
-            "Are you sure you want to delete this item?"
-        )
-        if (confirmBox === true) { } else { return; }
-
-        deleteRepRecord(id);
-
     }
+
+
+    /*
+   const deleteSelectedRepRecord = async (e) => {
+       e.preventDefault();
+
+       const confirmBox = window.confirm(
+           "Are you sure you want to delete this item?"
+       )
+       if (confirmBox === true) { } else { return; }
+
+       deleteRepRecord(id);
+
+   }
 */
     return (
         <div className="container">
@@ -234,15 +233,15 @@ export const Rep = ({ createRepRecord, deleteRepRecord, updateRepRecord, getRepR
             </h1>
             <Form onSubmit={e => onSubmit(e)}>
 
-              <Row className="mb-3">
+                <Row className="mb-3">
                     <Form.Group as={Col}>
-                           <Form.Control as="select" aria-label="Select Manager"
-                                    id="ManagerName"
-                                    name="ManagerName"
-                                    style={{ width: '300px' }}
-                                    value={ManagerName} onChange={e => onChange(e)}
-                                    >
-                                </Form.Control>
+                        <Form.Control as="select" aria-label="Select Manager"
+                            id="ManagerName"
+                            name="ManagerName"
+                            style={{ width: '300px' }}
+                            value={ManagerName} onChange={e => onChange(e)}
+                        >
+                        </Form.Control>
 
                     </Form.Group>
 
@@ -280,7 +279,7 @@ export const Rep = ({ createRepRecord, deleteRepRecord, updateRepRecord, getRepR
                             id="Territory"
                             name="Territory"
                             value={Territory} onChange={e => onChange(e)}
-                            
+
                         />
                     </Form.Group>
 
@@ -291,7 +290,7 @@ export const Rep = ({ createRepRecord, deleteRepRecord, updateRepRecord, getRepR
                             id="Phone"
                             name="Phone"
                             value={Phone} onChange={e => onChange(e)}
-                            
+
                         />
                     </Form.Group>
                 </Row>
@@ -333,7 +332,7 @@ export const Rep = ({ createRepRecord, deleteRepRecord, updateRepRecord, getRepR
                 <Row className="mb-6">
                     <Form.Group as={Col}>
                         <Button variant="primary" type="submit"
-                          disabled={id !== '' ? true : false}>
+                            disabled={id !== '' ? true : false}>
                             Submit
                         </Button>
                         {/*
@@ -353,7 +352,22 @@ export const Rep = ({ createRepRecord, deleteRepRecord, updateRepRecord, getRepR
                             disabled={id !== '' ? false : true}>
                             Update Record
                         </Button>
+
+                        <Button variant="success"
+                            type="button"
+                            style={{ marginLeft: '10px' }}
+                            onClick={(e) => clearScreen(e)}
+                            id="btnClearScreen"
+                            disabled={id !== '' ? true : false}
+                        >
+                            Add New
+                        </Button>
+
                     </Form.Group>
+                </Row>
+                <br></br>
+                <Row className="mb-3">
+                    <AuthButton />
                 </Row>
             </Form>
         </div>
@@ -376,4 +390,4 @@ const myStyles = {
 const mapStateToProps = (state) => ({})
 
 
-export default connect(mapStateToProps, { createRepRecord, deleteRepRecord, updateRepRecord, getRepRecord,fetchManagerFirstAndLastName})(Rep)
+export default connect(mapStateToProps, { createRepRecord, deleteRepRecord, updateRepRecord, getRepRecord, fetchManagerFirstAndLastName })(Rep)
