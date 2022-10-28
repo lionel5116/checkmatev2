@@ -153,7 +153,7 @@ const SearchPharma = ({ deletePharmaRecord,searchPharmaRecord }) => {
         },
     ];
 
-    const unique_id = uuidv4();
+    //const unique_id = uuidv4();
 
     return (
         <div className="container">
