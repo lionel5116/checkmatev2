@@ -143,13 +143,13 @@ const SearchReceipt = ({ deleteReceiptRecord,searchReceiptRecord }) => {
             text: 'Date',
         },
         {
-            dataField: 'id',
+            dataField: '1',
             text: 'Edit',
             formatter: CellFormatter,
             style: { width: '10px' }
         },
         {
-            dataField: 'id',
+            dataField: '2',
             text: 'Delete',
             formatter: CellFormatterDelete,
             style: { width: '10px' }
@@ -170,7 +170,7 @@ const SearchReceipt = ({ deleteReceiptRecord,searchReceiptRecord }) => {
 
 
                         <Row className="mb-3">
-                            <Form.Group as={Col} controlId="formGridEmail">
+                            <Form.Group as={Col} >
                                 <Form.Control as="select" aria-label="Search Type"
                                     id="SearchType"
                                     name="SearchType"
@@ -188,7 +188,7 @@ const SearchReceipt = ({ deleteReceiptRecord,searchReceiptRecord }) => {
                         </Row>
 
                         <Row className="mb-3">
-                            <Form.Group as={Col} controlId="formGridEmail">
+                            <Form.Group as={Col} >
                                 <Form.Label>Representative</Form.Label>
                                 <Form.Control type="text" 
                                 placeholder="" 
@@ -198,7 +198,7 @@ const SearchReceipt = ({ deleteReceiptRecord,searchReceiptRecord }) => {
                                 />
                             </Form.Group>
 
-                            <Form.Group as={Col} controlId="formGridName">
+                            <Form.Group as={Col} >
                                 <Form.Label>Resturant</Form.Label>
                                 <Form.Control type="text" 
                                  placeholder="Restaurant" 
@@ -228,7 +228,7 @@ const SearchReceipt = ({ deleteReceiptRecord,searchReceiptRecord }) => {
                                 <BootstrapTable
                                     striped
                                     hover
-                                    keyField="id"
+                                    keyField="_id"
                                     data={tblSearchResults}
                                     columns={columns}
                                     pagination={paginationFactory({

@@ -143,13 +143,13 @@ const SearchManager = ({ deleteManagerRecord,searchManagerRecord }) => {
             text: 'Email',
         },
         {
-            dataField: 'id',
+            dataField: '1',
             text: 'Edit',
             formatter: CellFormatter,
             style: { width: '10px' }
         },
         {
-            dataField: 'id',
+            dataField: '2',
             text: 'Delete',
             formatter: CellFormatterDelete,
             style: { width: '10px' }
@@ -170,7 +170,7 @@ const SearchManager = ({ deleteManagerRecord,searchManagerRecord }) => {
 
 
                         <Row className="mb-3">
-                            <Form.Group as={Col} controlId="formGridEmail">
+                            <Form.Group as={Col}>
                                 <Form.Control as="select" aria-label="Search Type"
                                     id="SearchType"
                                     name="SearchType"
@@ -189,7 +189,7 @@ const SearchManager = ({ deleteManagerRecord,searchManagerRecord }) => {
                         </Row>
 
                         <Row className="mb-3">
-                            <Form.Group as={Col} controlId="formGridEmail">
+                            <Form.Group as={Col}>
                                 <Form.Label>Email</Form.Label>
                                 <Form.Control type="email" 
                                 placeholder="Enter Email" 
@@ -199,7 +199,7 @@ const SearchManager = ({ deleteManagerRecord,searchManagerRecord }) => {
                                 />
                             </Form.Group>
 
-                            <Form.Group as={Col} controlId="formGridName">
+                            <Form.Group as={Col} >
                                 <Form.Label>Territory</Form.Label>
                                 <Form.Control type="text" 
                                  placeholder="Territory" 
@@ -209,7 +209,7 @@ const SearchManager = ({ deleteManagerRecord,searchManagerRecord }) => {
                                  />
                             </Form.Group>
 
-                            <Form.Group as={Col} controlId="formGridName">
+                            <Form.Group as={Col}>
                                 <Form.Label>Division</Form.Label>
                                 <Form.Control type="text" 
                                  placeholder="Division" 
@@ -239,7 +239,7 @@ const SearchManager = ({ deleteManagerRecord,searchManagerRecord }) => {
                                 <BootstrapTable
                                     striped
                                     hover
-                                    keyField="id"
+                                    keyField="_id"
                                     data={tblSearchResults}
                                     columns={columns}
                                     pagination={paginationFactory({

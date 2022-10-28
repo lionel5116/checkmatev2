@@ -8,6 +8,7 @@ import { useHistory } from "react-router-dom";
 
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
+import { v4 as uuidv4 } from 'uuid';
 
 
 //react bootstrap table next
@@ -17,7 +18,7 @@ import { BinocularsFill } from 'react-bootstrap-icons';
 import { Trash } from 'react-bootstrap-icons';
 import { deletePharmaRecord,searchPharmaRecord } from '../../actions/Pharma';
 
-//import {BootstrapTable, TableHeaderColumn} from 'react-bootstrap-table';
+
 
 const SearchPharma = ({ deletePharmaRecord,searchPharmaRecord }) => {
 
@@ -139,18 +140,20 @@ const SearchPharma = ({ deletePharmaRecord,searchPharmaRecord }) => {
             text: 'Email',
         },
         {
-            dataField: 'id',
+            dataField: '1',
             text: 'Edit',
             formatter: CellFormatter,
             style: { width: '10px' }
         },
         {
-            dataField: 'id',
+            dataField: '2',
             text: 'Delete',
             formatter: CellFormatterDelete,
             style: { width: '10px' }
         },
     ];
+
+    const unique_id = uuidv4();
 
     return (
         <div className="container">
@@ -166,7 +169,7 @@ const SearchPharma = ({ deletePharmaRecord,searchPharmaRecord }) => {
 
 
                         <Row className="mb-3">
-                            <Form.Group as={Col} controlId="formGridEmail">
+                            <Form.Group as={Col}>
                                 <Form.Control as="select" aria-label="Search Type"
                                     id="SearchType"
                                     name="SearchType"
@@ -185,7 +188,7 @@ const SearchPharma = ({ deletePharmaRecord,searchPharmaRecord }) => {
                         </Row>
 
                         <Row className="mb-3">
-                            <Form.Group as={Col} controlId="formGridEmail">
+                            <Form.Group as={Col} >
                                 <Form.Label>Email</Form.Label>
                                 <Form.Control type="email" 
                                 placeholder="Enter Email" 
@@ -195,7 +198,7 @@ const SearchPharma = ({ deletePharmaRecord,searchPharmaRecord }) => {
                                 />
                             </Form.Group>
 
-                            <Form.Group as={Col} controlId="formGridName">
+                            <Form.Group as={Col} >
                                 <Form.Label>Name</Form.Label>
                                 <Form.Control type="text" 
                                  placeholder="Name" 
@@ -226,7 +229,7 @@ const SearchPharma = ({ deletePharmaRecord,searchPharmaRecord }) => {
                                <BootstrapTable
                                     striped
                                     hover
-                                    keyField="id"
+                                    keyField="_id"
                                     data={tblSearchResults}
                                     columns={columns}
                                     

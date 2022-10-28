@@ -144,13 +144,13 @@ const SearchRep = ({ deleteRepRecord,searchRepRecord }) => {
             text: 'Email',
         },
         {
-            dataField: 'id',
+            dataField: '1',
             text: 'Edit',
             formatter: CellFormatter,
             style: { width: '10px' }
         },
         {
-            dataField: 'id',
+            dataField: '2',
             text: 'Delete',
             formatter: CellFormatterDelete,
             style: { width: '10px' }
@@ -171,7 +171,7 @@ const SearchRep = ({ deleteRepRecord,searchRepRecord }) => {
 
 
                         <Row className="mb-3">
-                            <Form.Group as={Col} controlId="formGridEmail">
+                            <Form.Group as={Col} >
                                 <Form.Control as="select" aria-label="Search Type"
                                     id="SearchType"
                                     name="SearchType"
@@ -191,7 +191,7 @@ const SearchRep = ({ deleteRepRecord,searchRepRecord }) => {
 
 
                         <Row className="mb-3">
-                            <Form.Group as={Col} controlId="formGridEmail">
+                            <Form.Group as={Col} >
                                 <Form.Label>Manager Name</Form.Label>
                                 <Form.Control type="text" 
                                 placeholder="Enter Manager Name" 
@@ -204,7 +204,7 @@ const SearchRep = ({ deleteRepRecord,searchRepRecord }) => {
                         </Row>
 
                         <Row className="mb-3">
-                            <Form.Group as={Col} controlId="formGridEmail">
+                            <Form.Group as={Col} >
                                 <Form.Label>Email</Form.Label>
                                 <Form.Control type="email" 
                                 placeholder="Enter Email" 
@@ -214,7 +214,7 @@ const SearchRep = ({ deleteRepRecord,searchRepRecord }) => {
                                 />
                             </Form.Group>
 
-                            <Form.Group as={Col} controlId="formGridName">
+                            <Form.Group as={Col} >
                                 <Form.Label>Territory</Form.Label>
                                 <Form.Control type="text" 
                                  placeholder="Territory" 

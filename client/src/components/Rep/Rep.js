@@ -322,7 +322,7 @@ export const Rep = ({ createRepRecord, deleteRepRecord, updateRepRecord, getRepR
                 <Row className="mb-12">
                     <Form.Group as={Col}>
                         <Form.Label>Notes</Form.Label>
-                        <textarea class="form-control" id="Notes" name="Notes" rows="5"
+                        <textarea className="form-control" id="Notes" name="Notes" rows="5"
                             value={Notes} onChange={e => onChange(e)}>
 
                         </textarea>

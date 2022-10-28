@@ -144,13 +144,13 @@ const SearchPhysicians = ({ deletePhysiciansRecord,searchPhysiciansRecord }) => 
             text: 'LicenseID',
         },
         {
-            dataField: 'id',
+            dataField: '1',
             text: 'Edit',
             formatter: CellFormatter,
             style: { width: '10px' }
         },
         {
-            dataField: 'id',
+            dataField: '2',
             text: 'Delete',
             formatter: CellFormatterDelete,
             style: { width: '10px' }
@@ -171,7 +171,7 @@ const SearchPhysicians = ({ deletePhysiciansRecord,searchPhysiciansRecord }) => 
 
 
                         <Row className="mb-3">
-                            <Form.Group as={Col} controlId="formGridEmail">
+                            <Form.Group as={Col} >
                                 <Form.Control as="select" aria-label="Search Type"
                                     id="SearchType"
                                     name="SearchType"
@@ -190,7 +190,7 @@ const SearchPhysicians = ({ deletePhysiciansRecord,searchPhysiciansRecord }) => 
                         </Row>
 
                         <Row className="mb-3">
-                            <Form.Group as={Col} controlId="formGridEmail">
+                            <Form.Group as={Col} >
                                 <Form.Label>License ID</Form.Label>
                                 <Form.Control type="text" 
                                 placeholder="Enter LicenseID" 
@@ -200,7 +200,7 @@ const SearchPhysicians = ({ deletePhysiciansRecord,searchPhysiciansRecord }) => 
                                 />
                             </Form.Group>
 
-                            <Form.Group as={Col} controlId="formGridName">
+                            <Form.Group as={Col} >
                                 <Form.Label>LastName</Form.Label>
                                 <Form.Control type="text" 
                                  placeholder="LastName" 
@@ -210,7 +210,7 @@ const SearchPhysicians = ({ deletePhysiciansRecord,searchPhysiciansRecord }) => 
                                  />
                             </Form.Group>
 
-                            <Form.Group as={Col} controlId="formGridName">
+                            <Form.Group as={Col} >
                                 <Form.Label>Email</Form.Label>
                                 <Form.Control type="text" 
                                  placeholder="Email" 
@@ -250,7 +250,7 @@ const SearchPhysicians = ({ deletePhysiciansRecord,searchPhysiciansRecord }) => 
                                 <BootstrapTable
                                     striped
                                     hover
-                                    keyField="id"
+                                    keyField="_id"
                                     data={tblSearchResults}
                                     columns={columns}
                                     pagination={paginationFactory({
