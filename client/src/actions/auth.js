@@ -96,12 +96,15 @@ export const login = (email,password) => async dispatch => {
 
    const body = JSON.stringify({email,password});
    console.log(body);
+  
 
    let serviceUrl = "";
    serviceUrl = process.env.REACT_APP_SERVICE_URL + '/auth'
 
    try {
        const res = await axios.post(serviceUrl,body,config);
+       localStorage.setItem('token',JSON.stringify(res.data))
+
        dispatch({
          type: LOGIN_SUCCESS,
          payload:res.data

@@ -4,8 +4,8 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Card from 'react-bootstrap/Card';
 import {Link} from 'react-router-dom';
-import setAuthToken from '../utils/setAuthToken';
-import axios from "axios";
+//import setAuthToken from '../utils/setAuthToken';
+//import axios from "axios";
 import {setAlert} from '../../actions/alert'
 import {register} from '../../actions/auth';
 
@@ -66,13 +66,8 @@ const clearScreen = ()  =>{
           <Card.Title>Enter Credentials</Card.Title>
           <Form
             onSubmit={(e) => {
-                //registerUser(e)
               e.preventDefault();
               onSubmit(e)
-              //setLoginData(userName, _password);
-              //setUserName('');
-              //setPassword('');
-              //setEmail('');
             }}
           >
 

@@ -1,64 +1,39 @@
-import React, { useState } from 'react'
+import React, { useState,useRef } from 'react'
 import { connect } from 'react-redux';
 import { setLoginData } from '../../actions/login';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Card from 'react-bootstrap/Card';
 import {Link} from 'react-router-dom';
-import setAuthToken from '../utils/setAuthToken';
-import axios from "axios";
+import {setAlert} from '../../actions/alert'
+import  {login} from '../../actions/auth'
 
-const Login = ({ setLoginData }) => {
-  const [userName, setUserName] = useState('');
-  const [_password, setPassword] = useState('');
+const Login = ({ setLoginData, setAlert,login}) => {
+const email = useRef();
+const password = useRef();
 
+
+const onSubmit = async e => {
+  e.preventDefault();
   
-  //const login (called from submit)
-  const login = async (e) => {
-
-    e.preventDefault();
-    let endpoint = process.env.REACT_APP_SERVICE_URL + '/auth'
-    
- 
-   const config = {
-    headers: {
-        'Content-Type':'application/json'
-    }};
-   
-
-    const body = {
-        email: userName,
-        password: _password
-    };
-
-    
-    try {
-         //@route POST api/auth
-         //http://localhost:5000/api/auth
-         //verifies credentials and fetches new token
-        const res = await axios.post(endpoint,body,config);
-        window.alert("User Successfully Logged in!!!");
-      
-        console.log(res.data);
-
-        //set's token to local storage/ called below
-        //--calls setAuthToken
-        loadUser();
-
-    } catch (err) {
-        console.log(err.message)
-        window.alert("Login Failed.." + err.message)
-    }
-    
+  if(password < 0){
+    setAlert('Please enter a password','danger');
   }
-
-const loadUser = async () => {
-  if (localStorage.getItem('token') !== null) {
-      setAuthToken(localStorage.token)
-  } else {
-      console.log(`Token does not exist`);
+  else{
+      login(email.current.value,
+           password.current.value);
+      clearScreen()
+      setAlert('Login Sucessfull','primary');
   }
 }
+
+
+const clearScreen = ()  =>{
+  email.current.value = '';
+  password.current.value = '';
+
+}
+
 
   return (
     <div className="container">
@@ -72,31 +47,25 @@ const loadUser = async () => {
         <Card.Body>
           <Card.Title>Enter your Login Credentials</Card.Title>
           <Form
-            onSubmit={(e) => {
-             
-              e.preventDefault();
-              login(e);
-              setLoginData(userName, _password);
-              setUserName('');
-              setPassword('');
-            }}
+           onSubmit={(e) => {
+            e.preventDefault();
+            onSubmit(e)
+          }}
           >
-            <Form.Group className="mb-3" controlId="formBasicEmail">
+            <Form.Group className="mb-3" >
               <Form.Label>Email address</Form.Label>
               <Form.Control type="input"
                 placeholder="Enter email"
-                value={userName}
-                onChange={(e) => setUserName(e.target.value)}
+                ref={email} 
               />
             </Form.Group>
 
-            <Form.Group className="mb-3" controlId="formBasicPassword">
+            <Form.Group className="mb-3" >
               <Form.Label>Password</Form.Label>
               <Form.Control
                 type="password"
-                placeholder="Password"
-                value={_password}
-                onChange={(e) => setPassword(e.target.value)} />
+                ref={password} 
+               />
             </Form.Group>
 
             <Button variant="primary" type="submit" style={myStyles.buttonCustomStyle}>
@@ -134,4 +103,4 @@ const mapStateToProps = state => ({
 })
 
 
-export default connect(mapStateToProps, { setLoginData })(Login)
+export default connect(mapStateToProps, { setLoginData,setAlert,login })(Login)
