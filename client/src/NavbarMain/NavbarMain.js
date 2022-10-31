@@ -19,59 +19,60 @@ const NavbarMain = ({ auth, isAuthenticated }) => {
   function returnToLogin(e) {
     e.preventDefault();
     history.push(
-        {
-            pathname: '/Login'
-        })
-}
+      {
+        pathname: '/Login'
+      })
+  }
 
 
   return (
     <div id="MasterContainer">
       <Fragment>
         {isAuthenticated !== null && isAuthenticated ? (
-             <Navbar bg="light" expand="lg">
-             <Navbar.Brand href="#/Login">Check Mate</Navbar.Brand>
-             <Navbar.Toggle aria-controls="basic-navbar-nav" />
-             <Navbar.Collapse id="basic-navbar-nav">
-               <Nav className="mr-auto">
-                 <Nav.Link href="#/Login">Home</Nav.Link>
-   
-                 <NavDropdown title="Medical Office Locations" id="basic-nav-dropdown">
-                   <NavDropdown.Item href="#/Pharma">Add Pharmaceutical Records</NavDropdown.Item>
-                   <NavDropdown.Item href="#/SearchPharma">Search Pharmaceutical Records</NavDropdown.Item>
-                   <NavDropdown.Divider />
-                   <NavDropdown.Item href="#/MedicalGroup">Add Medical Group Records</NavDropdown.Item>
-                   <NavDropdown.Item href="#/SearchMedicalGroup">Search Medical Group Records</NavDropdown.Item>
-                 </NavDropdown>
-   
-                 <NavDropdown title="Physicians Records" id="basic-nav-dropdown">
-                   <NavDropdown.Item href="#/Physicians">Add Physicians Records</NavDropdown.Item>
-                   <NavDropdown.Item href="#/SearchPhysicians">Search Physicians Records</NavDropdown.Item>
-                 </NavDropdown>
-   
-                 <NavDropdown title="Managers Reps Reciepts" id="basic-nav-dropdown">
-                   <NavDropdown.Item href="#/Manager">Add Manager Records</NavDropdown.Item>
-                   <NavDropdown.Item href="#/SearchManager">Search Manager Records</NavDropdown.Item>
-                   <NavDropdown.Divider />
-                   <NavDropdown.Item href="#/Rep">Add Rep Records</NavDropdown.Item>
-                   <NavDropdown.Item href="#/SearchRep">Search Rep Records</NavDropdown.Item>
-                   <NavDropdown.Divider />
-                   <NavDropdown.Item href="#/Receipt">Add Receipts </NavDropdown.Item>
-                   <NavDropdown.Item href="#/SearchReceipt">Search Receipts </NavDropdown.Item>
-                 </NavDropdown>
+          <Navbar bg="light" expand="lg">
+            <Navbar.Brand href="#/Login">Check Mate</Navbar.Brand>
+            <Navbar.Toggle aria-controls="basic-navbar-nav" />
+            <Navbar.Collapse id="basic-navbar-nav">
+              <Nav className="mr-auto">
+                <Nav.Link href="#/Login">Home</Nav.Link>
 
-                  <Form className="d-flex">
-                  <Form.Control
-                    type="search"
-                    placeholder="Search"
-                    className="me-2"
-                    aria-label="Search"
-                  />
-                <Button variant="outline-success"
+                <NavDropdown title="Medical Office Locations" id="basic-nav-dropdown">
+                  <NavDropdown.Item href="#/Pharma">Add Pharmaceutical Records</NavDropdown.Item>
+                  <NavDropdown.Item href="#/SearchPharma">Search Pharmaceutical Records</NavDropdown.Item>
+                  <NavDropdown.Divider />
+                  <NavDropdown.Item href="#/MedicalGroup">Add Medical Group Records</NavDropdown.Item>
+                  <NavDropdown.Item href="#/SearchMedicalGroup">Search Medical Group Records</NavDropdown.Item>
+                </NavDropdown>
+
+                <NavDropdown title="Physicians Records" id="basic-nav-dropdown">
+                  <NavDropdown.Item href="#/Physicians">Add Physicians Records</NavDropdown.Item>
+                  <NavDropdown.Item href="#/SearchPhysicians">Search Physicians Records</NavDropdown.Item>
+                </NavDropdown>
+
+                <NavDropdown title="Managers / Reps /Reciepts" id="basic-nav-dropdown">
+                  <NavDropdown.Item href="#/Manager">Add Manager Records</NavDropdown.Item>
+                  <NavDropdown.Item href="#/SearchManager">Search Manager Records</NavDropdown.Item>
+                  <NavDropdown.Divider />
+                  <NavDropdown.Item href="#/Rep">Add Rep Records</NavDropdown.Item>
+                  <NavDropdown.Item href="#/SearchRep">Search Rep Records</NavDropdown.Item>
+                  <NavDropdown.Divider />
+                  <NavDropdown.Item href="#/Receipt">Add Receipts </NavDropdown.Item>
+                  <NavDropdown.Item href="#/SearchReceipt">Search Receipts </NavDropdown.Item>
+                </NavDropdown>
+
+                <NavDropdown title="Reports" id="basic-nav-dropdown">
+                  <NavDropdown.Item href="#/ReceiptReport">Receipt Report</NavDropdown.Item>
+                  <NavDropdown.Divider />
+                  <NavDropdown.Item href="#/RepReport">Rep Report</NavDropdown.Item>
+              
+                </NavDropdown>
+
+                <Form className="d-flex">
+                  <Button variant="outline-success"
                     onClick={(e) => returnToLogin(e)}
-                    >Login/Authenticate</Button>
+                  >Login/Authenticate</Button>
                 </Form>
-   
+
                 {/*
                  <NavDropdown title="Client Records" id="basic-nav-dropdown">
                    <NavDropdown.Item href="#/Search">Search</NavDropdown.Item>
@@ -88,14 +89,14 @@ const NavbarMain = ({ auth, isAuthenticated }) => {
                  <Nav.Link href="#/test">REDUX AUTH TEST</Nav.Link>
    
                */}
-               </Nav>
-   
-             </Navbar.Collapse>
-           </Navbar>
-        ): (
+              </Nav>
+
+            </Navbar.Collapse>
+          </Navbar>
+        ) : (
           <p></p>
         )}
-        
+
       </Fragment>
     </div>
   )

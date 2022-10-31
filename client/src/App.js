@@ -25,6 +25,8 @@ import SearchRep from './components/Search/SearchRep';
 
 import Receipt from './components/Receipt/Receipt';
 import SearchReceipt from './components/Search/SearchReceipt';
+import ReceiptReport from './components/Reports/ReceiptReport';
+import RepReport from './components/Reports/RepReport';
 
 function App() {
   return (
@@ -102,6 +104,11 @@ function App() {
             path='/SearchRep'
             component={SearchRep}
           />
+          <Route
+            exact
+            path='/RepReport'
+            component={RepReport}
+          />
 
          <Route
             exact
@@ -113,6 +120,12 @@ function App() {
             path='/SearchReceipt'
             component={SearchReceipt}
           />
+             <Route
+            exact
+            path='/ReceiptReport'
+            component={ReceiptReport}
+          />
+
 
           <Route
             exact
